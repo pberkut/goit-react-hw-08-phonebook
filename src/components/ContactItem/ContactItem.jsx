@@ -11,15 +11,15 @@ import {
   ContactBlock,
 } from './ContactItem.styled';
 
-export const ContactItem = ({
-  index,
-  contact,
-  onEditContact,
-  onDeleteContact,
-}) => {
+import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/contactsSlice';
+
+export const ContactItem = ({ index, contact, onEditContact }) => {
   const [name, setName] = useState(contact.name);
   const [phone, setPhone] = useState(contact.phone);
   const [isEdit, setIsEdit] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -42,6 +42,10 @@ export const ContactItem = ({
       setIsEdit(false);
       onEditContact({ id: contact.id, name, phone });
     }
+  };
+
+  const handleDeleteContact = id => {
+    dispatch(deleteContact(id));
   };
 
   return (
@@ -88,7 +92,7 @@ export const ContactItem = ({
         </Button>
         <Button
           type="button"
-          onClick={() => onDeleteContact(contact.id)}
+          onClick={() => handleDeleteContact(contact.id)}
           role="Delete contact"
         >
           <MdDeleteForever />
@@ -105,5 +109,5 @@ ContactItem.propTypes = {
     phone: PropTypes.string.isRequired,
   }),
   onEditContact: PropTypes.func.isRequired,
-  onDeleteContact: PropTypes.func.isRequired,
+  // onDeleteContact: PropTypes.func.isRequired,
 };

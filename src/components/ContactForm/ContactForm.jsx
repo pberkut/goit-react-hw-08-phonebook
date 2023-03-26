@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -8,7 +7,12 @@ import {
   Button,
   Form,
 } from './ContactForm.styled';
+import { Notify } from 'notiflix';
 import { nanoid } from 'nanoid';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
+import { getContacts } from 'redux/selector';
 
 const INITIAL_VALUE = {
   name: '',
@@ -26,17 +30,27 @@ const ContactFormSchema = Yup.object().shape({
     .required('Required'),
 });
 
-export const ContactForm = ({ onSave }) => {
-  const handleSubmit = (values, actions) => {
-    const isUnique = onSave({
-      id: nanoid(2),
-      name: values.name.trim(),
-      phone: values.phone.trim(),
-    });
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
-    if (isUnique) {
-      actions.resetForm();
+  const handleSubmit = ({ name, phone }, actions) => {
+    const isUniqueContact = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    const isUniquePhone = contacts.some(contact => contact.phone === phone);
+
+    if (isUniqueContact) {
+      return Notify.failure(`Contact ${name} is already in contacts.`);
     }
+    if (isUniquePhone) {
+      return Notify.failure(`Phone ${phone} is already in contacts.`);
+    }
+
+    dispatch(addContact({ id: nanoid(2), name, phone }));
+
+    actions.resetForm();
   };
 
   return (
@@ -72,8 +86,4 @@ export const ContactForm = ({ onSave }) => {
       </Form>
     </Formik>
   );
-};
-
-ContactForm.propTypes = {
-  onSave: PropTypes.func.isRequired,
 };

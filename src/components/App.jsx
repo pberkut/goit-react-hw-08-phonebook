@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react';
 import { GlobalStyle } from './GlobalStyles';
-import { Notify } from 'notiflix';
 import { Container } from './Container';
 import { Section } from './Section';
 import { ContactForm } from './ContactForm';
@@ -15,20 +14,6 @@ export const App = () => {
 
   const [filter, setFilter] = useState('');
 
-  const addContact = newContact => {
-    const isUniqueContact = contacts.find(
-      contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
-    );
-
-    if (isUniqueContact) {
-      Notify.failure(`${newContact.name} is already in contacts.`);
-      return false;
-    }
-
-    setContacts(prevState => [newContact, ...prevState]);
-    return true;
-  };
-
   const editContact = updateContact => {
     setContacts(prevContacts => {
       return prevContacts.map(contact => {
@@ -39,13 +24,12 @@ export const App = () => {
         return contact;
       });
     });
-    // debugger;
   };
 
-  const deleteContact = contactId =>
-    setContacts(prevState =>
-      prevState.filter(contact => contact.id !== contactId)
-    );
+  // const deleteContact = contactId =>
+  //   setContacts(prevState =>
+  //     prevState.filter(contact => contact.id !== contactId)
+  //   );
 
   const setFilterContacts = event => setFilter(event.currentTarget.value);
 
@@ -61,7 +45,7 @@ export const App = () => {
       <Container>
         <Wrapper>
           <Section title="Phonebook">
-            <ContactForm onSave={addContact} />
+            <ContactForm />
           </Section>
           <Section title="Search">
             <Filter value={filter} onChange={setFilterContacts} />
@@ -70,7 +54,6 @@ export const App = () => {
             <ContactList
               contacts={filteredContacts}
               onEditContact={editContact}
-              onDeleteContact={deleteContact}
             />
           </Section>
         </Wrapper>

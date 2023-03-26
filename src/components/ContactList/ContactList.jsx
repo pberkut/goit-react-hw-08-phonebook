@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
 import { List } from './ContactList.styled';
 import { ContactItem } from '../ContactItem';
+import { useSelector } from 'react-redux';
+import { getContacts } from 'redux/selector';
 
-export const ContactList = ({ contacts, onEditContact, onDeleteContact }) => {
+export const ContactList = ({ onEditContact, onDeleteContact }) => {
+  const contacts = useSelector(getContacts);
+
   return (
     <div>
       <List>
@@ -28,5 +32,5 @@ ContactList.propTypes = {
       phone: PropTypes.string.isRequired,
     })
   ).isRequired,
-  onDeleteContact: PropTypes.func.isRequired,
+  // onDeleteContact: PropTypes.func.isRequired,
 };
