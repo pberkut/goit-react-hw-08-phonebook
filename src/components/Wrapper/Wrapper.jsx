@@ -1,5 +1,5 @@
 import { WrapperStyled } from './Wrapper.styled';
 
-export const Wrapper = ({ children }) => (
-  <WrapperStyled>{children}</WrapperStyled>
-);
+const Wrapper = ({ children }) => <WrapperStyled>{children}</WrapperStyled>;
+
+export default Wrapper;

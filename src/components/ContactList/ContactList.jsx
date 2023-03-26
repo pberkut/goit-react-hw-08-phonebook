@@ -1,22 +1,29 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import { useMemo } from 'react';
 import { List } from './ContactList.styled';
-import { ContactItem } from '../ContactItem';
+import ContactItem from '../ContactItem';
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/selector';
+import { getContacts, getFilterValue } from 'redux/selector';
+import { getFilteredArray } from 'utils/getFilteredArray';
 
-export const ContactList = ({ onEditContact, onDeleteContact }) => {
+const ContactList = ({ onEditContact }) => {
   const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilterValue);
+
+  const getVisibleContacts = useMemo(
+    () => getFilteredArray(contacts, filter),
+    [contacts, filter]
+  );
 
   return (
     <div>
       <List>
-        {contacts.map((contact, idx) => (
+        {getVisibleContacts.map((contact, idx) => (
           <ContactItem
             key={contact.id}
             contact={contact}
             index={idx}
             onEditContact={onEditContact}
-            onDeleteContact={onDeleteContact}
           />
         ))}
       </List>
@@ -24,13 +31,15 @@ export const ContactList = ({ onEditContact, onDeleteContact }) => {
   );
 };
 
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  // onDeleteContact: PropTypes.func.isRequired,
-};
+// ContactList.propTypes = {
+//   contacts: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string.isRequired,
+//       name: PropTypes.string.isRequired,
+//       phone: PropTypes.string.isRequired,
+//     })
+//   ).isRequired,
+//   // onDeleteContact: PropTypes.func.isRequired,
+// };
+
+export default ContactList;

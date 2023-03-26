@@ -1,5 +1,5 @@
 const getContacts = state => state.contacts;
 
-const getFilter = state => state.filters;
+const getFilterValue = state => state.filter;
 
-export { getContacts, getFilter };
+export { getContacts, getFilterValue };

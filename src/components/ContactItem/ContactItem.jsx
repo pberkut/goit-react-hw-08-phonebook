@@ -14,7 +14,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
 
-export const ContactItem = ({ index, contact, onEditContact }) => {
+const ContactItem = ({ index, contact, onEditContact }) => {
   const [name, setName] = useState(contact.name);
   const [phone, setPhone] = useState(contact.phone);
   const [isEdit, setIsEdit] = useState(false);
@@ -108,6 +108,7 @@ ContactItem.propTypes = {
     name: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
   }),
-  onEditContact: PropTypes.func.isRequired,
-  // onDeleteContact: PropTypes.func.isRequired,
+  // onEditContact: PropTypes.func.isRequired,
 };
+
+export default ContactItem;

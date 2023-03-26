@@ -1,19 +1,17 @@
-import PropTypes from 'prop-types';
 import { FormField } from './Filter.styled';
 
 import { useDispatch } from 'react-redux';
-import { setFilter } from 'redux/filtersSlice';
+import { setFilterValue } from 'redux/filterSlice';
 import { useSelector } from 'react-redux';
-import { getFilter } from 'redux/selector';
+import { getFilterValue } from 'redux/selector';
 
-export const Filter = ({ value, onChange }) => {
+const Filter = () => {
   const dispatch = useDispatch();
 
-  const { filter } = useSelector(getFilter);
+  const filter = useSelector(getFilterValue);
 
-  const handleChange = e => {
-    // console.log(e.target.value);
-    dispatch(setFilter(e.target.value));
+  const handleSetFilter = e => {
+    dispatch(setFilterValue(e.target.value));
   };
 
   return (
@@ -23,13 +21,10 @@ export const Filter = ({ value, onChange }) => {
         type="text"
         value={filter}
         title="Type name or phone"
-        onChange={handleChange}
+        onChange={handleSetFilter}
       />
     </FormField>
   );
 };
 
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
+export default Filter;
