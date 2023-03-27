@@ -4,21 +4,14 @@ import ContactItem from '../ContactItem';
 import { useSelector } from 'react-redux';
 import { getFilteredContacts } from 'redux/selector';
 
-const ContactList = ({ onEditContact }) => {
+const ContactList = () => {
   const visibleContacts = useSelector(getFilteredContacts);
-
-  console.log('get', visibleContacts);
 
   return (
     <div>
       <List>
         {visibleContacts.map((contact, idx) => (
-          <ContactItem
-            key={contact.id}
-            contact={contact}
-            index={idx}
-            onEditContact={onEditContact}
-          />
+          <ContactItem key={contact.id} contact={contact} index={idx} />
         ))}
       </List>
     </div>

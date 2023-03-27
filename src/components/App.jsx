@@ -8,22 +8,6 @@ import Wrapper from './Wrapper';
 // import { useLocalStorage } from 'hooks/useLocalStorage';
 
 export const App = () => {
-  // * const editContact = updateContact => {
-  //   setContacts(prevContacts => {
-  //     return prevContacts.map(contact => {
-  //       if (contact.id === updateContact.id) {
-  //         const newContact = { ...contact, ...updateContact };
-  //         return newContact;
-  //       }
-  //       return contact;
-  //     });
-  //   });
-  // };
-
-  // * const setFilterContacts = event => setFilter(event.currentTarget.value);
-
-  // const filteredContacts = getFilteredArray(contacts, filter);
-
   return (
     <>
       <GlobalStyle />
@@ -36,9 +20,7 @@ export const App = () => {
             <Filter />
           </Section>
           <Section title="Contacts">
-            <ContactList
-            // onEditContact={editContact}
-            />
+            <ContactList />
           </Section>
         </Wrapper>
       </Container>

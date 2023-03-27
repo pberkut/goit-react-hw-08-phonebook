@@ -12,14 +12,14 @@ import {
 } from './ContactItem.styled';
 
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
+import { deleteContact, editContact } from 'redux/contactsSlice';
 
-const ContactItem = ({ index, contact, onEditContact }) => {
+const ContactItem = ({ index, contact }) => {
+  const dispatch = useDispatch();
+
   const [name, setName] = useState(contact.name);
   const [phone, setPhone] = useState(contact.phone);
   const [isEdit, setIsEdit] = useState(false);
-
-  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -40,12 +40,12 @@ const ContactItem = ({ index, contact, onEditContact }) => {
       setIsEdit(true);
     } else {
       setIsEdit(false);
-      onEditContact({ id: contact.id, name, phone });
+      dispatch(editContact({ id: contact.id, name, phone }));
     }
   };
 
-  const handleDeleteContact = id => {
-    dispatch(deleteContact(id));
+  const handleDeleteContact = () => {
+    dispatch(deleteContact(contact.id));
   };
 
   return (
@@ -92,7 +92,7 @@ const ContactItem = ({ index, contact, onEditContact }) => {
         </Button>
         <Button
           type="button"
-          onClick={() => handleDeleteContact(contact.id)}
+          onClick={handleDeleteContact}
           role="Delete contact"
         >
           <MdDeleteForever />
@@ -103,12 +103,12 @@ const ContactItem = ({ index, contact, onEditContact }) => {
 };
 
 ContactItem.propTypes = {
+  index: PropTypes.number.isRequired,
   contact: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
   }),
-  // onEditContact: PropTypes.func.isRequired,
 };
 
 export default ContactItem;
