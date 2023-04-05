@@ -11,7 +11,7 @@ import { Notify } from 'notiflix';
 import { nanoid } from 'nanoid';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 import { getContacts } from 'redux/selector';
 
 const INITIAL_VALUE = {

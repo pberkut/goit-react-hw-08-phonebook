@@ -12,7 +12,7 @@ import {
 } from './ContactItem.styled';
 
 import { useDispatch } from 'react-redux';
-import { deleteContact, editContact } from 'redux/contactsSlice';
+import { deleteContact, editContact } from 'redux/operations';
 
 const ContactItem = ({ index, contact }) => {
   const dispatch = useDispatch();
