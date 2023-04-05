@@ -5,15 +5,15 @@ import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
 import Wrapper from './Wrapper';
-import { useDispatch, useSelector } from 'react-redux';
-import { getError, getIsLoading } from 'redux/selector';
+import { useDispatch } from 'react-redux';
+// import { getError, getIsLoading } from 'redux/selector';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operations';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  // const isLoading = useSelector(getIsLoading);
+  // const error = useSelector(getError);
 
   useEffect(() => {
     dispatch(fetchContacts());
