@@ -6,6 +6,8 @@ import {
   editContact,
 } from './operations';
 
+const extraActions = [fetchContacts, addContact, deleteContact, editContact];
+
 const handlePending = state => {
   state.isLoading = true;
 };
@@ -37,7 +39,7 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         const index = state.items.findIndex(
-          contact => contact.id === action.payload
+          contact => contact.id === action.payload.id
         );
         state.items.splice(index, 1);
       })
@@ -48,30 +50,16 @@ const contactsSlice = createSlice({
         state.items.splice(index, 1, action.payload);
       })
       .addMatcher(
-        isAnyOf(
-          fetchContacts.pending,
-          addContact.pending,
-          deleteContact.pending,
-          editContact.pending
-        ),
+        isAnyOf(...extraActions.map(action => action.pending)),
         handlePending
       )
       .addMatcher(
-        isAnyOf(
-          fetchContacts.fulfilled,
-          addContact.fulfilled,
-          deleteContact.fulfilled,
-          editContact.fulfilled
-        ),
+        isAnyOf(...extraActions.map(action => action.fulfilled)),
+
         handleFulfilled
       )
       .addMatcher(
-        isAnyOf(
-          fetchContacts.rejected,
-          addContact.rejected,
-          deleteContact.rejected,
-          editContact.rejected
-        ),
+        isAnyOf(...extraActions.map(action => action.rejected)),
         handleRejected
       );
   },
