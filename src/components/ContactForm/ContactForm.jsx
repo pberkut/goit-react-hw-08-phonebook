@@ -8,11 +8,10 @@ import {
   Form,
 } from './ContactForm.styled';
 import { Notify } from 'notiflix';
-import { nanoid } from 'nanoid';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
-import { getContacts } from 'redux/selector';
+import { selectContacts } from 'redux/selector';
 
 const INITIAL_VALUE = {
   name: '',
@@ -32,7 +31,7 @@ const ContactFormSchema = Yup.object().shape({
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const handleSubmit = ({ name, phone }, actions) => {
     const isUniqueContact = contacts.some(
@@ -48,7 +47,7 @@ const ContactForm = () => {
       return Notify.failure(`Phone ${phone} is already in contacts.`);
     }
 
-    dispatch(addContact({ id: nanoid(2), name, phone }));
+    dispatch(addContact({ name, phone }));
 
     actions.resetForm();
   };

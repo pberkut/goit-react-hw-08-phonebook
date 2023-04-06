@@ -3,12 +3,12 @@ import { FormField } from './Filter.styled';
 import { useDispatch } from 'react-redux';
 import { setFilterValue } from 'redux/filterSlice';
 import { useSelector } from 'react-redux';
-import { getFilterValue } from 'redux/selector';
+import { selectFilterValue } from 'redux/selector';
 
 const Filter = () => {
   const dispatch = useDispatch();
 
-  const filter = useSelector(getFilterValue);
+  const filter = useSelector(selectFilterValue);
 
   const handleSetFilter = e => {
     dispatch(setFilterValue(e.target.value));
