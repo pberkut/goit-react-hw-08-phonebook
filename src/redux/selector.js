@@ -3,7 +3,7 @@ import { handleFilterContacts } from 'utils/handleFilterContacts';
 
 const getContacts = state => state.contacts.items;
 
-const getIsLoading = state => state.contacts.getIsLoading;
+const getIsLoading = state => state.contacts.isLoading;
 
 const getError = state => state.contacts.error;
 
