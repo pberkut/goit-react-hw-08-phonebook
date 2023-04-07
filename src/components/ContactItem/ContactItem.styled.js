@@ -34,7 +34,7 @@ export const Button = styled.button`
 `;
 
 export const Label = styled.label`
-  font-size: 12px;
+  font-size: 10px;
 `;
 
 export const Input = styled.input`

@@ -48,6 +48,7 @@ const ContactForm = () => {
     }
 
     dispatch(addContact({ name, phone }));
+    Notify.info(`${name} added to your Phonebook`);
 
     actions.resetForm();
   };
