@@ -81,7 +81,7 @@ const ContactItem = ({ index, contact }) => {
           </>
         ) : (
           <>
-            <span>{name}:</span>
+            <span>{name} :</span> &nbsp;
             <span>{phone}</span>
           </>
         )}

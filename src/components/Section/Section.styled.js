@@ -6,7 +6,7 @@ export const Title = styled.h2`
 `;
 
 export const SectionStyle = styled.div`
-  width: 400px;
+  width: 450px;
   padding: 10px;
   border: 1px solid lightgrey;
   background-color: #ffffe6;
