@@ -48,12 +48,19 @@ const ContactItem = ({ index, contact }) => {
     dispatch(deleteContact(contact.id));
   };
 
+  const onSubmit = e => {
+    if (e.key !== 'Enter') {
+      return;
+    }
+    handleEditContact();
+  };
+
   return (
     <ListItem>
       <span>{index + 1}.</span>
       <ContactBlock>
         {isEdit ? (
-          <>
+          <form onKeyDown={onSubmit}>
             <Label>
               Name
               <Input
@@ -78,7 +85,7 @@ const ContactItem = ({ index, contact }) => {
                 type="tel"
               />
             </Label>
-          </>
+          </form>
         ) : (
           <>
             <span>{name} :</span> &nbsp;

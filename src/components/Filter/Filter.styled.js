@@ -7,3 +7,8 @@ export const FormField = styled.label`
   font-size: 14px;
   font-weight: 600;
 `;
+
+export const InputStyled = styled.input`
+  margin-left: 20px;
+  margin-right: 20px;
+`;

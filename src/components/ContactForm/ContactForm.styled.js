@@ -25,6 +25,9 @@ export const FormField = styled.label`
 
 export const Field = styled(FieldFormik)`
   display: block;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
 `;
 
 export const Button = styled.button`
