@@ -11,7 +11,6 @@ import {
   FormLabel,
   VStack,
 } from '@chakra-ui/react';
-// import css from './LoginForm.module.css';
 import { useState } from 'react';
 
 const LoginForm = () => {
@@ -37,34 +36,41 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit} autoComplete="off">
           <VStack spacing={3} align="flex-start">
             <FormControl>
-              <FormLabel htmlFor="email">Email</FormLabel>
-              <Input
-                id="email"
-                type="email"
-                name="email"
-                placeholder="Enter email"
-                variant="filled"
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="password">Password</FormLabel>
-              <InputGroup size="md">
+              <FormLabel htmlFor="email">
+                Email
                 <Input
-                  id="password"
-                  name="password"
-                  pr="4.5rem"
-                  type={show ? 'text' : 'password'}
-                  placeholder="Enter password"
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Enter email"
                   variant="filled"
                 />
-                <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm" onClick={handleClick}>
-                    {show ? 'Hide' : 'Show'}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
+              </FormLabel>
             </FormControl>
-            <Button type="submit">Log In</Button>
+            <FormControl>
+              <FormLabel htmlFor="password">
+                Password
+                <InputGroup size="md">
+                  <Input
+                    id="password"
+                    name="password"
+                    pr="4.5rem"
+                    type={show ? 'text' : 'password'}
+                    placeholder="Enter password"
+                    variant="filled"
+                  />
+
+                  <InputRightElement width="4.5rem">
+                    <Button h="1.75rem" size="sm" onClick={handleClick}>
+                      {show ? 'Hide' : 'Show'}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+              </FormLabel>
+            </FormControl>
+            <Button type="submit" width="full">
+              Log In
+            </Button>
           </VStack>
         </form>
       </Box>
