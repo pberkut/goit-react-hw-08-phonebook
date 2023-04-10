@@ -1,6 +1,6 @@
 const handleFilterContacts = (contacts, filterValue) =>
   contacts.filter(contact =>
-    [contact.name.toLowerCase(), contact.phone]
+    [contact.name.toLowerCase(), contact.number]
       .join(' ')
       .includes(filterValue.toLowerCase().trim())
   );

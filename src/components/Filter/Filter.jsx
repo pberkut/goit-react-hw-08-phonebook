@@ -1,9 +1,9 @@
 import { FormField, InputStyled } from './Filter.styled';
 
 import { useDispatch } from 'react-redux';
-import { setFilterValue } from 'redux/filterSlice';
+import { setFilterValue } from 'redux/contacts/filterSlice';
 import { useSelector } from 'react-redux';
-import { selectFilterValue } from 'redux/selector';
+import { selectFilterValue } from 'redux/contacts/selectors';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -16,15 +16,15 @@ const Filter = () => {
 
   return (
     <FormField>
-      Find contacts by name or phone:
+      Find contacts by name or number:
       <InputStyled
         type="text"
         value={filter}
-        title="Type name or phone"
+        title="Type name or number"
         onChange={handleSetFilter}
       />
     </FormField>
   );
 };
 
-export default Filter;
+export { Filter };

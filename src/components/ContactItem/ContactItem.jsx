@@ -12,13 +12,13 @@ import {
 } from './ContactItem.styled';
 
 import { useDispatch } from 'react-redux';
-import { deleteContact, editContact } from 'redux/operations';
+import { deleteContact, editContact } from 'redux/contacts/operations';
 
 const ContactItem = ({ index, contact }) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState(contact.name);
-  const [phone, setPhone] = useState(contact.phone);
+  const [number, setNumber] = useState(contact.number);
   const [isEdit, setIsEdit] = useState(false);
 
   const handleChange = e => {
@@ -27,8 +27,8 @@ const ContactItem = ({ index, contact }) => {
       case 'name':
         setName(value);
         break;
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
       default:
         break;
@@ -40,7 +40,7 @@ const ContactItem = ({ index, contact }) => {
       setIsEdit(true);
     } else {
       setIsEdit(false);
-      dispatch(editContact({ id: contact.id, name, phone }));
+      dispatch(editContact({ id: contact.id, name, number }));
     }
   };
 
@@ -72,10 +72,10 @@ const ContactItem = ({ index, contact }) => {
               />
             </Label>
             <Label>
-              Phone:&nbsp;
+              Number:&nbsp;
               <Input
-                name="phone"
-                value={phone}
+                name="number"
+                value={number}
                 onChange={handleChange}
                 title="Edit phone number"
                 type="tel"
@@ -85,7 +85,7 @@ const ContactItem = ({ index, contact }) => {
         ) : (
           <>
             <span>{name} :</span> &nbsp;
-            <span>{phone}</span>
+            <span>{number}</span>
           </>
         )}
       </ContactBlock>
@@ -110,8 +110,8 @@ ContactItem.propTypes = {
   contact: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
   }),
 };
 
-export default ContactItem;
+export { ContactItem };
