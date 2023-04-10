@@ -9,6 +9,6 @@ export const FormField = styled.label`
 `;
 
 export const InputStyled = styled.input`
-  margin-left: 20px;
-  margin-right: 20px;
+  /* margin-left: 20px;
+  margin-right: 20px; */
 `;

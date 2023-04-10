@@ -1,17 +1,18 @@
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
-import {
-  ErrorMessage,
-  FormField,
-  Field,
-  Button,
-  Form,
-} from './ContactForm.styled';
+import { ErrorMessage, Form } from './ContactForm.styled';
 import { Notify } from 'notiflix';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
+import {
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Center,
+} from '@chakra-ui/react';
 
 const INITIAL_VALUE = {
   name: '',
@@ -60,29 +61,42 @@ const ContactForm = () => {
       onSubmit={handleSubmit}
     >
       <Form>
-        <FormField>
-          Name:
-          <Field
-            name="name"
-            type="text"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
+        <FormControl>
+          <FormLabel>
+            Name
+            <Field
+              as={Input}
+              name="name"
+              type="text"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
+              variant="filled"
+            />
+          </FormLabel>
           <ErrorMessage name="name" component="p" />
-        </FormField>
-        <FormField>
-          Number:
-          <Field
-            name="number"
-            type="tel"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>
+            Number
+            <Field
+              as={Input}
+              name="number"
+              type="tel"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+              variant="filled"
+            />
+          </FormLabel>
           <ErrorMessage name="number" component="p" />
-        </FormField>
-        <Button type="submit">Add contact</Button>
+        </FormControl>
+        <Center>
+          <Button type="submit" bg="gray.100">
+            Add contact
+          </Button>
+        </Center>
       </Form>
     </Formik>
   );

@@ -6,8 +6,8 @@ import {
 } from 'formik';
 
 export const Form = styled(FormFormik)`
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
 `;
 
 export const ErrorMessage = styled(YupErrorMessage)`
@@ -24,10 +24,10 @@ export const FormField = styled.label`
 `;
 
 export const Field = styled(FieldFormik)`
-  display: block;
-  text-align: center;
-  margin-left: 20px;
-  margin-right: 20px;
+  /* display: block; */
+  /* text-align: center; */
+  /* margin-left: 20px;
+  margin-right: 20px; */
 `;
 
 export const Button = styled.button`
