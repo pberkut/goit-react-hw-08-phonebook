@@ -40,13 +40,25 @@ const RegisterForm = () => {
             <FormControl>
               <FormLabel htmlFor="username">
                 Username
-                <Input id="username" type="text" name="name" variant="filled" />
+                <Input
+                  id="username"
+                  type="text"
+                  name="name"
+                  variant="filled"
+                  placeholder="Enter username"
+                />
               </FormLabel>
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="email">
                 Email
-                <Input id="email" type="email" name="email" variant="filled" />
+                <Input
+                  id="email"
+                  type="email"
+                  name="email"
+                  variant="filled"
+                  placeholder="Enter email"
+                />
               </FormLabel>
             </FormControl>
 
